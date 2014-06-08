@@ -97,11 +97,10 @@ class ListaDoble {
         }
         else
         {
-            NodoDoble tmp = PrimerNodo;
-            PrimerNodo.Dato = dato;
-            PrimerNodo.Siguiente = tmp;
-            PrimerNodo.Anterior = null;
-            tmp.Anterior = PrimerNodo;
+            NodoDoble tmp = new NodoDoble(dato);
+            tmp.Siguiente = PrimerNodo;
+            PrimerNodo.Anterior = tmp;
+            PrimerNodo = tmp;
         }
     }
     
