@@ -18,10 +18,11 @@ public class ListaDobleMain
         //listaDoblePrueba.ImprimirListaDoble();
         listaDoblePrueba.AgregarNodoInicio("2");
         listaDoblePrueba.AgregarNodoInicio("1");
-        /*listaDoblePrueba.AgregarNodoFinal("5");
-        listaDoblePrueba.AgregarNodoPos("2", 2);
+        listaDoblePrueba.AgregarNodoFinal("5");
+        /*listaDoblePrueba.AgregarNodoPos("2", 2);
         listaDoblePrueba.AgregarNodoPos("4", 3);*/
-        listaDoblePrueba.ImprimirListaDoble();
+        //listaDoblePrueba.ImprimirListaDoble();
+        listaDoblePrueba.EliminarNodoPos(3);
     }
 }
 
@@ -155,5 +156,67 @@ class ListaDoble {
         }
     }
     
+    public boolean EliminarNodoInicio()
+    {
+        if(PrimerNodo == null)
+        {
+            System.out.println("Error: La lista ya se encuentra vacía!!!");
+            return false;
+        }
+        else
+        {
+            NodoDoble tmp = PrimerNodo.Siguiente;
+            tmp.Anterior = null;
+            PrimerNodo = tmp;
+            return true;
+        }
+    }
+    
+    public boolean EliminarNodoFinal()
+    {
+        if(PrimerNodo == null)
+        {
+            System.out.println("Error: La lista ya se encuentra vacía");
+            return false;
+        }
+        else
+        {
+            NodoDoble tmp = PrimerNodo;
+            while(tmp.Siguiente != null)
+            {
+                tmp = tmp.Siguiente;
+            }
+            NodoDoble nuevoNodoFinal = tmp.Anterior;
+            nuevoNodoFinal.Siguiente = null;
+            return true;
+        }
+    }
+    
+    public void EliminarNodoPos(int pos)
+    {
+        if(PrimerNodo == null)
+        {
+            System.out.println("Error: La lista ya se encuentra vacía");
+        }
+        else if(pos==1)
+            EliminarNodoInicio();
+        else
+        {
+            NodoDoble tmp = PrimerNodo;
+            for(int i = 1; i < pos; i++)
+            {
+                if(tmp.Siguiente==null)
+                    i = pos+1;
+                else
+                    tmp = tmp.Siguiente;
+            }
+            NodoDoble nodoAnterior = tmp.Anterior;
+            NodoDoble nodoSiguiente = tmp.Siguiente;
+            nodoAnterior.Siguiente = nodoSiguiente;
+            if(nodoSiguiente!=null)
+                nodoSiguiente.Anterior = nodoAnterior;
+        }
+        
+    }
     //Hacer los códigos de eliminar inicio, final y pos
 }
